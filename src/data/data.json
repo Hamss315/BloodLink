@@ -1,0 +1,133 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "عمر",
+      "last_name": "محمود",
+      "city": "القاهرة",
+      "phone": "01001234567",
+      "blood_type": "A+"
+    },
+    {
+      "id": 2,
+      "first_name": "سلمى",
+      "last_name": "علي",
+      "city": "الإسكندرية",
+      "phone": "01009876543",
+      "blood_type": "A+"
+    },
+    {
+      "id": 3,
+      "first_name": "أحمد",
+      "last_name": "حسن",
+      "city": "الجيزة",
+      "phone": "01007654321",
+      "blood_type": "B-"
+    },
+    {
+      "id": 4,
+      "first_name": "منة",
+      "last_name": "رفعت",
+      "city": "أسيوط",
+      "phone": "01006543210",
+      "blood_type": "O+"
+    },
+    {
+      "id": 5,
+      "first_name": "خالد",
+      "last_name": "سعيد",
+      "city": "أسوان",
+      "phone": "01005432109",
+      "blood_type": "AB+"
+    }
+  ],
+  "donation_places": [
+    {
+      "id": 1,
+      "name": "بنك الدم المصري",
+      "city": "القاهرة",
+      "location": "https://maps.app.goo.gl/NnBu9MseSaGAhJrT7",
+      "phone": "0223456789"
+    },
+    {
+      "id": 2,
+      "name": "مركز تبرع دم الإسكندرية",
+      "city": "الإسكندرية",
+      "location": "https://maps.app.goo.gl/RX8qonNT1Gc9GYWB9",
+      "phone": "0334567890"
+    },
+    {
+      "id": 3,
+      "name": "المركز القومى لنقل الدم",
+      "city": "الجيزة",
+      "location": "https://maps.app.goo.gl/eXv3P7t9M4pv4kXb9",
+      "phone": "01234567890"
+    },
+    {
+      "id": 4,
+      "name": "مستشفى أسوان التخصصي",
+      "city": "أسوان",
+      "location": "https://maps.app.goo.gl/S8wVE5MVN3PMMvqb9",
+      "phone": "0971234567"
+    },
+    {
+      "id": 5,
+      "name": "مستشفى جامعة أسيوط",
+      "city": "أسيوط",
+      "location": "https://maps.app.goo.gl/YfWDe3K5cAWncuY57",
+      "phone": "0887654321"
+    },
+    {
+      "id": 6,
+      "name": "مستشفي بني سويف العام",
+      "city": "بني سويف",
+      "location": "https://maps.app.goo.gl/eyNWXhXEF8pq5PEu6",
+      "phone": "0228765432"
+    },
+    {
+      "id": 7,
+      "name": "مستشفى الهلال الاحمر المصرى",
+      "city": "المنوفية",
+      "location": "https://maps.app.goo.gl/cJJZHsMGv3K1gHGR9",
+      "phone": "0501234567"
+    }
+  ],
+  "requests": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "blood_type_needed": "A+",
+      "city": "القاهرة",
+      "state": "available",
+      "created_at": "2025-10-21",
+      "recipients": [2, 4]
+    },
+    {
+      "id": 2,
+      "user_id": 3,
+      "blood_type_needed": "B-",
+      "city": "الجيزة",
+      "state": "not available",
+      "created_at": "2025-10-20",
+      "recipients": [1, 2, 5]
+    },
+    {
+      "id": 3,
+      "user_id": 4,
+      "blood_type_needed": "O+",
+      "city": "أسيوط",
+      "state": "available",
+      "created_at": "2025-10-19",
+      "recipients": [1, 2, 3]
+    },
+    {
+      "id": 4,
+      "user_id": 2,
+      "blood_type_needed": "A+",
+      "city": "الإسكندرية",
+      "state": "not available",
+      "created_at": "2025-10-18",
+      "recipients": [1, 3, 4]
+    }
+  ]
+}
