@@ -2,132 +2,166 @@
   "users": [
     {
       "id": 1,
-      "first_name": "عمر",
-      "last_name": "محمود",
-      "city": "القاهرة",
+      "first_name": "Omar",
+      "last_name": "Mahmoud",
+      "city": "Cairo",
       "phone": "01001234567",
       "blood_type": "A+"
     },
     {
       "id": 2,
-      "first_name": "سلمى",
-      "last_name": "علي",
-      "city": "الإسكندرية",
+      "first_name": "Salma",
+      "last_name": "Ali",
+      "city": "Alexandria",
       "phone": "01009876543",
       "blood_type": "A+"
     },
     {
       "id": 3,
-      "first_name": "أحمد",
-      "last_name": "حسن",
-      "city": "الجيزة",
+      "first_name": "Ahmed",
+      "last_name": "Hassan",
+      "city": "Giza",
       "phone": "01007654321",
       "blood_type": "B-"
     },
     {
       "id": 4,
-      "first_name": "منة",
-      "last_name": "رفعت",
-      "city": "أسيوط",
+      "first_name": "Mena",
+      "last_name": "Refaat",
+      "city": "Assiut",
       "phone": "01006543210",
       "blood_type": "O+"
     },
     {
       "id": 5,
-      "first_name": "خالد",
-      "last_name": "سعيد",
-      "city": "أسوان",
+      "first_name": "Khaled",
+      "last_name": "Saeed",
+      "city": "Aswan",
       "phone": "01005432109",
       "blood_type": "AB+"
-    }
-  ],
-  "donation_places": [
-    {
-      "id": 1,
-      "name": "بنك الدم المصري",
-      "city": "القاهرة",
-      "location": "https://maps.app.goo.gl/NnBu9MseSaGAhJrT7",
-      "phone": "0223456789"
-    },
-    {
-      "id": 2,
-      "name": "مركز تبرع دم الإسكندرية",
-      "city": "الإسكندرية",
-      "location": "https://maps.app.goo.gl/RX8qonNT1Gc9GYWB9",
-      "phone": "0334567890"
-    },
-    {
-      "id": 3,
-      "name": "المركز القومى لنقل الدم",
-      "city": "الجيزة",
-      "location": "https://maps.app.goo.gl/eXv3P7t9M4pv4kXb9",
-      "phone": "01234567890"
-    },
-    {
-      "id": 4,
-      "name": "مستشفى أسوان التخصصي",
-      "city": "أسوان",
-      "location": "https://maps.app.goo.gl/S8wVE5MVN3PMMvqb9",
-      "phone": "0971234567"
-    },
-    {
-      "id": 5,
-      "name": "مستشفى جامعة أسيوط",
-      "city": "أسيوط",
-      "location": "https://maps.app.goo.gl/YfWDe3K5cAWncuY57",
-      "phone": "0887654321"
     },
     {
       "id": 6,
-      "name": "مستشفي بني سويف العام",
-      "city": "بني سويف",
-      "location": "https://maps.app.goo.gl/eyNWXhXEF8pq5PEu6",
-      "phone": "0228765432"
+      "first_name": "Mohamed",
+      "last_name": "Mahmoud",
+      "city": "Cairo",
+      "phone": "01001234568",
+      "blood_type": "A+"
     },
     {
       "id": 7,
-      "name": "مستشفى الهلال الاحمر المصرى",
-      "city": "المنوفية",
-      "location": "https://maps.app.goo.gl/cJJZHsMGv3K1gHGR9",
-      "phone": "0501234567"
+      "first_name": "Hazem",
+      "last_name": "Mahmoud",
+      "city": "Cairo",
+      "phone": "01001234567",
+      "blood_type": "AB+"
+    },
+    {
+      "id": 8,
+      "first_name": "Mohamed",
+      "last_name": "Hassan",
+      "city": "Giza",
+      "phone": "01007654320",
+      "blood_type": "B-"
+    },
+    {
+      "id": 9,
+      "first_name": "Manal",
+      "last_name": "Saeed",
+      "city": "Aswan",
+      "phone": "01005432106",
+      "blood_type": "AB+"
+    },
+    {
+      "id": 10,
+      "first_name": "mayar",
+      "last_name": "gamal",
+      "city": "Assiut",
+      "phone": "01006543217",
+      "blood_type": "O+"
+    },
+    {
+      "id": 11,
+      "first_name": "mina",
+      "last_name": "adel",
+      "city": "Assiut",
+      "phone": "01006543215",
+      "blood_type": "O-"
+    },
+    {
+      "id": 12,
+      "first_name": "kamal",
+      "last_name": "mohamed",
+      "city": "Assiut",
+      "phone": "01006543216",
+      "blood_type": "O-"
+    },
+    {
+      "id": 13,
+      "first_name": "maged",
+      "last_name": "askar",
+      "city": "Alexandria",
+      "phone": "01009876544",
+      "blood_type": "A+"
     }
   ],
-  "requests": [
-    {
-      "id": 1,
-      "user_id": 1,
-      "blood_type_needed": "A+",
-      "city": "القاهرة",
-      "state": "available",
-      "created_at": "2025-10-21",
-      "recipients": [2, 4]
-    },
-    {
-      "id": 2,
-      "user_id": 3,
-      "blood_type_needed": "B-",
-      "city": "الجيزة",
-      "state": "not available",
-      "created_at": "2025-10-20",
-      "recipients": [1, 2, 5]
-    },
-    {
-      "id": 3,
-      "user_id": 4,
-      "blood_type_needed": "O+",
-      "city": "أسيوط",
-      "state": "available",
-      "created_at": "2025-10-19",
-      "recipients": [1, 2, 3]
-    },
-    {
-      "id": 4,
-      "user_id": 2,
-      "blood_type_needed": "A+",
-      "city": "الإسكندرية",
-      "state": "not available",
-      "created_at": "2025-10-18",
-      "recipients": [1, 3, 4]
-    }
-  ]
+  "donation_places": [
+  {
+    "id": 1,
+    "name": "Egyptian Blood Bank",
+    "city": "Cairo",
+    "location": "https://maps.app.goo.gl/NnBu9MseSaGAhJrT7",
+    "phone": "0223456789",
+    "available_time": "8:00 AM – 4:00 PM"
+  },
+  {
+    "id": 2,
+    "name": "Alexandria Blood Donation Center",
+    "city": "Alexandria",
+    "location": "https://maps.app.goo.gl/RX8qonNT1Gc9GYWB9",
+    "phone": "0334567890",
+    "available_time": "9:00 AM – 5:00 PM"
+  },
+  {
+    "id": 3,
+    "name": "National Blood Transfusion Center",
+    "city": "Giza",
+    "location": "https://maps.app.goo.gl/eXv3P7t9M4pv4kXb9",
+    "phone": "01234567890",
+    "available_time": "8:30 AM – 3:30 PM"
+  },
+  {
+    "id": 4,
+    "name": "Aswan Specialized Hospital",
+    "city": "Aswan",
+    "location": "https://maps.app.goo.gl/S8wVE5MVN3PMMvqb9",
+    "phone": "0971234567",
+    "available_time": "9:00 AM – 2:00 PM"
+  },
+  {
+    "id": 5,
+    "name": "Assiut University Hospital",
+    "city": "Asyut",
+    "location": "https://maps.app.goo.gl/YfWDe3K5cAWncuY57",
+    "phone": "0887654321",
+    "available_time": "8:00 AM – 4:00 PM"
+  },
+  {
+    "id": 6,
+    "name": "Beni Suef General Hospital",
+    "city": "Beni Suef",
+    "location": "https://maps.app.goo.gl/eyNWXhXEF8pq5PEu6",
+    "phone": "0228765432",
+    "available_time": "9:00 AM – 5:00 PM"
+  },
+  {
+    "id": 7,
+    "name": "Egyptian Red Crescent Hospital",
+    "city": "Menoufia",
+    "location": "https://maps.app.goo.gl/cJJZHsMGv3K1gHGR9",
+    "phone": "0501234567",
+    "available_time": "8:00 AM – 3:00 PM"
+  }
+  ],
+  "requests": []
 }
