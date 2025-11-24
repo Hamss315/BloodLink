@@ -141,35 +141,33 @@
   pointer-events: none;
 }
 
-/* ========== RESPONSIVE FIX ========== */
 @media (max-width: 576px) {
   .statusFix {
     position: static !important;
     margin-top: 10px;
     display: inline-block;
-    font-size: 12px !important;   /* 👈 تصغير حجم الـ status */
+    font-size: 12px !important;   
     padding: 4px 10px !important;
   }
 
   .historyCardHeader h5 {
-    font-size: 14px !important;  /* 👈 تصغير اسم الشخص */
+    font-size: 14px !important;  
   }
 
   .infoValue {
-    font-size: 15px !important;  /* 👈 تصغير معلومات التاريخ */
+    font-size: 15px !important;  
   }
 
   .infoLabel {
-    font-size: 12px !important;  /* 👈 تصغير عناوين المعلومات */
+    font-size: 12px !important;  
   }
   .request-date {
     font-size: 13px !important;
   }
 
-  /* زرار الريت */
   .rate-btn {
     font-size: 12px !important;
-    padding: 4px 10px !important;
+    padding: 4px 8px !important;
     height: 30px !important;
   }
 }
