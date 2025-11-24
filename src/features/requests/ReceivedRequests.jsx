@@ -143,12 +143,14 @@ export default function ReceivedRequestsPage() {
             return (
               <Col xs={12} sm={10} md={8} lg={7} xl={6} key={r.id}>
                 <Card
-                  className="w-100 border-0 p-4 position-relative d-flex flex-column"
+                  className="w-100 border-0 p-3 p-sm-4 position-relative d-flex flex-column"
                   style={{
                     borderRadius: "24px",
                     boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
                     background: "#fff",
-                    minHeight: "100%"
+                    minHeight: "100%",
+                    maxWidth: "500px",
+                    margin: "0 auto"
                   }}
                 >
                   <div style={{ position: "absolute", top: "10px", right: "10px", width: "100px" }}>
@@ -156,9 +158,9 @@ export default function ReceivedRequestsPage() {
                   </div>
 
                   <Card.Body className="text-start p-0 flex-grow-1">
-                    <Card.Title className="d-flex align-items-center mb-3">
+                    <Card.Title className="d-flex align-items-center mb-3 request-title">
                       <BsPersonCircle className="me-2 text-danger" size={28}/>
-                      <span className="fw-bold" style={{fontSize:"1.3rem"}}>{name}</span>
+                      <span className="fw-bold name-text">{name}</span>
                     </Card.Title>
 
                     <Card.Text className="d-flex align-items-center mb-2">

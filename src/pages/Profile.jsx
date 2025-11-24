@@ -5,9 +5,11 @@ import Profile from "../features/user/components/ProfilePage.jsx"
 function ProfilePage() {
   return (
     <>
+    <div className="pt-4">
       <NavbarAfterLogin />
       <Profile />
       <Footer />
+    </div>
     </>
   )
 }

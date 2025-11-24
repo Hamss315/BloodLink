@@ -85,7 +85,7 @@ function LoginForm() {
   return (
     <Container
       fluid
-      className="d-flex align-items-center justify-content-center"
+      className="d-flex align-items-center justify-content-center py-5"
       style={{ minHeight: '90vh', backgroundColor: '#f8f9fa' }}
     >
       <Row className="w-100 justify-content-center">

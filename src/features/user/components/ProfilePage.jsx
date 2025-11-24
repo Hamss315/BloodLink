@@ -122,7 +122,7 @@ function Profile() {
   };
 
   return (
-    <div className={styles.bg}>
+    <div className={styles.bg}> 
       <Container className={styles.mainContainer}>
         <Row className={styles.alignStart}>
           <Col xs={12} md={3} className={styles.sidebar}>
@@ -301,31 +301,27 @@ function Profile() {
                       }}
                     >
                       <span
-                        className={`${styles.statusCompleted} position-absolute`}
+                        className={`${styles.statusCompleted} ${styles.statusFix} position-absolute`}
                         style={{ top: "10px", right: "10px" }}
                       >
                         {item.status}
                       </span>
 
-                      <div className="d-flex align-items-center mb-2">
-                        <BsPersonCircle
-                          size={28}
-                          color="#dc3545"
-                          className="me-2"
-                        />
+                      <div className={`d-flex align-items-center mb-2  ${styles.historyCardHeader}`}>
+                        <BsPersonCircle size={28} color="#dc3545" className="me-2" />
                         <h5 className="fw-bold mb-0">{item.requesterName}</h5>
                       </div>
 
                       <div className="d-flex align-items-center mb-3">
                         <BsCalendarDate size={20} color="#dc3545" className="me-2" />
-                        <span className="text-muted">{item.date}</span>
+                        <span className="text-muted request-date">{item.date}</span>
                       </div>
 
                       <div className="d-flex justify-content-end">
                         <Button
                           variant="outline-danger"
                           size="sm"
-                          className="px-4"
+                          className="px-4 rate-btn"
                           style={{ height: "32px" }}
                           onClick={() => {
                             setSelectedRequester(item);

@@ -1,4 +1,3 @@
-
 .bg {
   background: #f7f7f7;
   padding-top: 100px;
@@ -46,26 +45,25 @@
   margin-top: 12px;
   padding: 12px;
   border-radius: 30px;
-  background: white !important;     
+  background: white !important;
   border: 2px solid #dc3545 !important;
-  color: #dc3545 !important;         
+  color: #dc3545 !important;
   font-weight: 600;
   transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .sidebarBtn:hover {
-  background: #dc3545 !important;  
-  color: white !important;         
-  border-color: #dc3545 !important;
-}
-
-.activeBtn {
-  background: #dc3545 !important;  
+  background: #dc3545 !important;
   color: white !important;
   border-color: #dc3545 !important;
 }
 
+.activeBtn {
+  background: #dc3545 !important;
+  color: white !important;
+  border-color: #dc3545 !important;
+}
 
 .mainContent {
   padding-left: 10px;
@@ -124,6 +122,7 @@
   padding: 6px 14px;
   border-radius: 10px;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .statusCompleted {
@@ -140,4 +139,37 @@
   display: flex;
   direction: ltr;
   pointer-events: none;
+}
+
+/* ========== RESPONSIVE FIX ========== */
+@media (max-width: 576px) {
+  .statusFix {
+    position: static !important;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 12px !important;   /* 👈 تصغير حجم الـ status */
+    padding: 4px 10px !important;
+  }
+
+  .historyCardHeader h5 {
+    font-size: 14px !important;  /* 👈 تصغير اسم الشخص */
+  }
+
+  .infoValue {
+    font-size: 15px !important;  /* 👈 تصغير معلومات التاريخ */
+  }
+
+  .infoLabel {
+    font-size: 12px !important;  /* 👈 تصغير عناوين المعلومات */
+  }
+  .request-date {
+    font-size: 13px !important;
+  }
+
+  /* زرار الريت */
+  .rate-btn {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    height: 30px !important;
+  }
 }
