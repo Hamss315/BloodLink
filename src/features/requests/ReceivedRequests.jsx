@@ -40,54 +40,59 @@ export default function ReceivedRequestsPage() {
     );
   });
 
+
   const handleAccept = (req) => {
-    const requestIndex = requests.findIndex(r => r.id === req.id);
-    if (requestIndex === -1) return;
+  const requestIndex = requests.findIndex(r => r.id === req.id);
+  if (requestIndex === -1) return;
 
-    const alreadyAccepted = requests[requestIndex].acceptedUsers?.some(
-      u => u.userPhone === user.phone
-    );
+  const updatedRequests = [...requests];
+  const targetRequest = updatedRequests[requestIndex];
 
-    if (alreadyAccepted) return;
+  const alreadyAccepted = targetRequest.acceptedUsers?.some(
+    u => u.userPhone === user.phone
+  );
 
-    const updatedAcceptedUsers = requests[requestIndex].acceptedUsers
-      ? [...requests[requestIndex].acceptedUsers]
-      : [];
+  if (alreadyAccepted) return;
 
-    updatedAcceptedUsers.push({
-      userId: user.phone,
-      name: user.name,
-      phone: user.phone,
-      rating: 0,
-      raters: 0,
-      confirmed: false
-    });
+  const updatedAcceptedUsers = targetRequest.acceptedUsers
+    ? [...targetRequest.acceptedUsers]
+    : [];
 
-    const updatedRequests = [...requests];
-    updatedRequests[requestIndex] = {
-      ...requests[requestIndex],
-      acceptedUsers: updatedAcceptedUsers
-    };
+  updatedAcceptedUsers.push({
+    userId: user.phone,
+    name: user.name,
+    phone: user.phone,
+    rating: 0,
+    raters: 0,
+    confirmed: false
+  });
 
-    setRequests(updatedRequests);
-    localStorage.setItem("requests", JSON.stringify(updatedRequests));
+  targetRequest.acceptedUsers = updatedAcceptedUsers;
 
-    const newAccepted = [...accepted, { requestId: req.id, userPhone: user.phone }];
-    setAccepted(newAccepted);
-    localStorage.setItem("acceptedRequests", JSON.stringify(newAccepted));
 
-    if (updatedAcceptedUsers.length >= 3 && req.state !== "pending") {
-      updatedRequests[requestIndex].state = "pending";
-      setRequests([...updatedRequests]);
-      localStorage.setItem("requests", JSON.stringify(updatedRequests));
-    }
+  const totalAccepted = updatedAcceptedUsers.length;
 
-    toast.success("You accepted this request!", {
-      position: "top-center",
-      autoClose: 2000,
-      theme: "colored"
-    });
-  };
+  if (totalAccepted % 3 === 0) {
+    targetRequest.state = "pending";
+  } else {
+    targetRequest.state = "open";
+  }
+
+  setRequests(updatedRequests);
+  localStorage.setItem("requests", JSON.stringify(updatedRequests));
+
+  const newAccepted = [...accepted, { requestId: req.id, userPhone: user.phone }];
+  setAccepted(newAccepted);
+  localStorage.setItem("acceptedRequests", JSON.stringify(newAccepted));
+
+  toast.success("You accepted this request!", {
+    position: "top-center",
+    autoClose: 2000,
+    theme: "colored"
+  });
+};
+
+
 
   const requesterInfo = (phone) => {
     const reqUser = users.find(u => u.phone === phone);
@@ -141,7 +146,7 @@ export default function ReceivedRequestsPage() {
             const hasAccepted = accepted.some(a => a.requestId === r.id && a.userPhone === user.phone);
 
             return (
-              <Col xs={12} sm={10} md={8} lg={7} xl={6} key={r.id}>
+              <Col xs={12} sm={10} md={9} lg={8} xl={7} xxl={6} key={r.id}>
                 <Card
                   className="w-100 border-0 p-3 p-sm-4 position-relative d-flex flex-column"
                   style={{
@@ -149,7 +154,7 @@ export default function ReceivedRequestsPage() {
                     boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
                     background: "#fff",
                     minHeight: "100%",
-                    maxWidth: "500px",
+                    maxWidth: "650px",
                     margin: "0 auto"
                   }}
                 >
