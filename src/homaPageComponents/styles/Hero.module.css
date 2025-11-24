@@ -13,10 +13,9 @@
 
 .heroSection {
   min-height: 100vh; 
- 
-background: linear-gradient(to bottom right, #fef2f2, #ffffff);
-  padding: 100rem 0; 
-  
+  background: linear-gradient(to bottom right, #fef2f2, #ffffff);
+  padding: 0;
+  position: relative;
 }
 
 
@@ -81,6 +80,9 @@ background: linear-gradient(to bottom right, #fef2f2, #ffffff);
   .heartIcon {
     width: 120px;
     height: 120px;
+  }
+  .heroSection {
+    padding: 100px 15px 30px 15px;
   }
 }
 

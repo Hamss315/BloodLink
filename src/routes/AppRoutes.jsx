@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-rou
 import { useAppSelector } from "../app/hooks";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Home from "../pages/Home";
 import DonationPlaces from "../pages/DonationPlaces";
 import RequestFormPage from "../pages/RequestForm";
@@ -10,10 +9,12 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import MyRequestsPage from "../pages/MyRequestsPage";
 import ReceivedRequestsPage from "../pages/ReceivedRequestsPage";
+import AcceptedUsersPage from "../pages/AcceptedUsersPage";
 import NotFound from "../pages/NotFound";
 import ProfilePage from "../pages/Profile";
 import NavbarbeforeLogin from "../common/NavbarbeforeLogin";
 import NavbarAfterLogin from "../common/NavbarAfterLogin";
+import ScrollToTop from "../common/ScrollToTop"; 
 
 function RootLayout() {
   const { isAuthenticated } = useAppSelector((state) => state.user);
@@ -21,9 +22,8 @@ function RootLayout() {
   return (
     <>
       {isAuthenticated ? <NavbarAfterLogin /> : <NavbarbeforeLogin />}
-
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
-
+      <ScrollToTop /> 
       <Outlet />
     </>
   );
@@ -43,9 +43,9 @@ export default function AppRoutes() {
         { path: "my-requests", element: <MyRequestsPage /> },
         { path: "received-requests", element: <ReceivedRequestsPage /> },
         { path: "profile", element: <ProfilePage /> },
+        { path: "accepted/:id", element: <AcceptedUsersPage /> }, 
         { path: "login", element: isAuthenticated ? <Navigate to="/" replace /> : <LoginPage /> },
         { path: "register", element: isAuthenticated ? <Navigate to="/" replace /> : <RegisterPage /> },
-
         { path: "*", element: <NotFound /> },
       ],
     },

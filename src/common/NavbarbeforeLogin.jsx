@@ -14,8 +14,8 @@ export default function NavbarbeforeLogin() {
     { to: "about", label: "Why Donate" },
     { to: "eligibility", label: "Eligibility" },
     { to: "stats", label: "Statistics" },
-    { to: "stories", label: "Stories" },
     { to: "features", label: "How It Works" },
+    { to: "stories", label: "Stories" },
     { to: "contact", label: "Contact" },
   ];
 

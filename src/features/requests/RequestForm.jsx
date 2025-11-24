@@ -62,7 +62,7 @@ function RequestForm() {
       requester_phone: phone,
       blood_type_needed: bloodType,
       place,
-      state: "available",
+      state: "open",
       createdAt: new Date().toISOString(),
     };
 
@@ -80,7 +80,7 @@ function RequestForm() {
   };
 
   return (
-    <Container>
+    <Container className="mt-5">
       <h3 className="mt-4 text-center fw-bold">Send Donation Request</h3>
       <p className="mt-2 text-center fs-8 text-secondary">
         Submit a blood donation request to find donors in your area

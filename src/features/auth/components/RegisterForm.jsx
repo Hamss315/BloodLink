@@ -96,12 +96,14 @@ function Register() {
         age: parseInt(formData.age),
         bloodType: formData.bloodType,
         governorate: formData.governorate,
-        registrationTime: new Date().toISOString()
+        registrationTime: new Date().toISOString(),
+        ratings: []
       }
 
+      existingUsers.push(userData)
+      localStorage.setItem('users', JSON.stringify(existingUsers))
+
       dispatch(setUser(userData))
-      
-      console.log('Registration successful:', userData)
 
       toast.success('Registration successful!', {
         position: 'top-center',

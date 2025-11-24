@@ -9,8 +9,6 @@ function Hero() {
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.user);
 
-  console.log(user);
-
   const handleDonateClick = () => {
     if (user) {
       navigate("/donation-centers", { replace: false });
@@ -22,12 +20,12 @@ function Hero() {
   return (
     <section
       id="home"
-      className={`${styles.heroSection} d-flex align-items-center justify-content-center position-relative py-5 px-3 px-md-5 px-lg-6 mt-5`}
+      className={`${styles.heroSection} d-flex align-items-center justify-content-center position-relative px-3 px-md-5 px-lg-6`}
       style={{ minHeight: "100vh", margin: 0 }}
     >
       <div className={styles.heroBg}></div>
 
-      <Container fluid className="h-100">
+      <Container fluid className="h-100 pt-4 mt-5">
         <Row className="align-items-center justify-content-center h-100 gx-3 gx-md-4">
           <Col
             lg={6}

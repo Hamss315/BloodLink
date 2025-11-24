@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { useAppSelector, useAppDispatch } from '../../../app/hooks'
-import { updateUser } from '../../user/userSlice'
+import { setUser } from '../../user/userSlice'
 
 function EditProfile({ closeModal }) {
   const dispatch = useAppDispatch()
@@ -28,7 +28,14 @@ function EditProfile({ closeModal }) {
 
   const handleSave = (e) => {
     e.preventDefault()
-    dispatch(updateUser(formData))
+
+    const users = JSON.parse(localStorage.getItem('users')) || []
+    const updatedUsers = users.map(u =>
+      u.phone === user.phone ? { ...u, ...formData } : u
+    )
+    localStorage.setItem('users', JSON.stringify(updatedUsers))
+
+    dispatch(setUser({ ...user, ...formData }))
 
     toast.success('Profile updated successfully!', {
       position: 'top-center',

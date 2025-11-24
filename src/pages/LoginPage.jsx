@@ -6,7 +6,7 @@ export default function LoginPage() {
   return (
     <>
         <NavbarbeforeLogin/>
-        <main className="py-5">
+        <main className="pt-5">
         <Login />
         </main>
         <Footer/>

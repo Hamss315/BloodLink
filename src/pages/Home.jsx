@@ -19,9 +19,9 @@ function Home() {
       {loggedIn ? <NavbarAfterLogin /> : <NavbarBeforeLogin />}
       <Hero />
       <About />
-      <How_Work />
-      <Statistics />
       <Eligibility />
+      <Statistics />
+      <How_Work />
       <SuccessStories />
       <Contact />
       <Footer />

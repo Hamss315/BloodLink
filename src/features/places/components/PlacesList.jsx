@@ -41,7 +41,7 @@ const PlaceList = () => {
   }, [search, userCityCenters]);
 
   return (
-    <Container className="py-5">
+    <Container className="pt-5 mt-5">
       <h2 className="text-center fw-bold">
         Donation Centers in Your City
         <img
@@ -83,7 +83,7 @@ const PlaceList = () => {
             <Col key={center.id} xs={12} sm={6} md={6} lg={4}>
               <Card
                 className="rounded-4 border-0"
-                style={{ boxShadow: "0 8px 12px #ffabab" }}
+                style={{ boxShadow: "0 4px 8px #ffabab" }}
               >
                 <Card.Body className="d-flex flex-column">
                   <div className="d-flex justify-content-between align-items-start mb-2">

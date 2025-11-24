@@ -1,71 +1,127 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Row, Col } from "react-bootstrap";
-import {
-  BsGeoAltFill,
-  BsDropletFill,
-  BsPersonCircle,
-  BsTelephoneFill,
-  BsCalendarDate,
-} from "react-icons/bs";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { BsGeoAltFill, BsDropletFill, BsPersonCircle, BsTelephoneFill, BsCalendarDate, BsStarFill } from "react-icons/bs";
 import report2Gif from "../../assets/images/report (1).gif";
 import noResultGif from "../../assets/images/no-data (1).gif";
+import { toast } from "react-toastify";
 
 export default function ReceivedRequestsPage() {
   const [user, setUser] = useState(null);
   const [requests, setRequests] = useState([]);
   const [users, setUsers] = useState([]);
+  const [accepted, setAccepted] = useState([]);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedRequests = JSON.parse(localStorage.getItem("requests")) || [];
     const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const storedAccepted = JSON.parse(localStorage.getItem("acceptedRequests")) || [];
 
     setUser(storedUser);
     setRequests(storedRequests);
     setUsers(storedUsers);
+    setAccepted(storedAccepted);
   }, []);
 
-  if (!user) {
-    return (
-      <h3 style={{ textAlign: "center", marginTop: 30 }}>
-        Please login first
-      </h3>
-    );
-  }
+  if (!user) return <h3 style={{ textAlign: "center", marginTop: 30 }}>Please login first</h3>;
 
-  const receivedRequests = requests.filter(
-    (r) =>
+  const receivedRequests = requests.filter((r) => {
+    const requestUser = users.find(
+      (u) =>
+        u.phone === r.user_phone &&
+        u.governorate?.toLowerCase() === user.governorate?.toLowerCase()
+    );
+
+    return (
       r.user_phone !== user.phone &&
       r.blood_type_needed === user.bloodType &&
-      users.find(
-        (u) =>
-          u.phone === r.user_phone &&
-          u.governorate?.toLowerCase() === user.governorate?.toLowerCase()
-      )
-  );
+      requestUser &&
+      new Date(r.createdAt) > new Date(user.registrationTime)
+    );
+  });
+
+  const handleAccept = (req) => {
+    const requestIndex = requests.findIndex(r => r.id === req.id);
+    if (requestIndex === -1) return;
+
+    const alreadyAccepted = requests[requestIndex].acceptedUsers?.some(
+      u => u.userPhone === user.phone
+    );
+
+    if (alreadyAccepted) return;
+
+    const updatedAcceptedUsers = requests[requestIndex].acceptedUsers
+      ? [...requests[requestIndex].acceptedUsers]
+      : [];
+
+    updatedAcceptedUsers.push({
+      userId: user.phone,
+      name: user.name,
+      phone: user.phone,
+      rating: 0,
+      raters: 0,
+      confirmed: false
+    });
+
+    const updatedRequests = [...requests];
+    updatedRequests[requestIndex] = {
+      ...requests[requestIndex],
+      acceptedUsers: updatedAcceptedUsers
+    };
+
+    setRequests(updatedRequests);
+    localStorage.setItem("requests", JSON.stringify(updatedRequests));
+
+    const newAccepted = [...accepted, { requestId: req.id, userPhone: user.phone }];
+    setAccepted(newAccepted);
+    localStorage.setItem("acceptedRequests", JSON.stringify(newAccepted));
+
+    if (updatedAcceptedUsers.length >= 3 && req.state !== "pending") {
+      updatedRequests[requestIndex].state = "pending";
+      setRequests([...updatedRequests]);
+      localStorage.setItem("requests", JSON.stringify(updatedRequests));
+    }
+
+    toast.success("You accepted this request!", {
+      position: "top-center",
+      autoClose: 2000,
+      theme: "colored"
+    });
+  };
 
   const requesterInfo = (phone) => {
-    const reqUser = users.find((u) => u.phone === phone);
+    const reqUser = users.find(u => u.phone === phone);
     return reqUser
-      ? { name: reqUser.name, phone: reqUser.phone || "N/A" }
-      : { name: "Unknown", phone: "N/A" };
+      ? {
+          name: reqUser.name,
+          phone: reqUser.phone || "N/A",
+          rating: reqUser.rating || 0,
+          raters: reqUser.raters || 0
+        }
+      : { name: "Unknown", phone: "N/A", rating: 0, raters: 0 };
   };
 
   const getStatusBadge = (state) => {
     return (
-      <div
-        className="d-flex align-items-center justify-content-center p-2 rounded-4 fw-bold"
-        style={{
-          width: "100%",
-          backgroundColor: state === "available" ? "#dbfce7" : "#ffe2e2",
-          color: state === "available" ? "#1d6630" : "#9f1526",
-          fontSize: "0.85rem",
-          border: "2px solid transparent",
-        }}
-      >
-        {state === "available" ? "Available" : "Unavailable"}
+      <div className={`d-flex align-items-center justify-content-center p-2 rounded-4 fw-bold`} style={{
+        width: "100px",
+        backgroundColor: state === "open" ? "#dbfce7" : state === "pending" ? "#fff3cd" : "#ffe2e2",
+        color: state === "open" ? "#1d6630" : state === "pending" ? "#856404" : "#9f1526",
+        fontSize: "0.85rem"
+      }}>
+        {state === "open" ? "Open" : state === "pending" ? "Pending" : "Closed"}
       </div>
     );
+  };
+
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <BsStarFill
+        key={i}
+        className={i < Math.floor(rating) ? "text-warning" : "text-secondary"}
+        style={i + 1 - rating === 0.5 ? { opacity: 0.5 } : {}}
+      />
+    ));
   };
 
   return (
@@ -81,79 +137,76 @@ export default function ReceivedRequestsPage() {
       {receivedRequests.length > 0 ? (
         <Row className="g-4 justify-content-center">
           {receivedRequests.map((r) => {
-            const { name, phone } = requesterInfo(r.user_phone);
+            const { name, phone, rating, raters } = requesterInfo(r.user_phone);
+            const hasAccepted = accepted.some(a => a.requestId === r.id && a.userPhone === user.phone);
+
             return (
               <Col xs={12} sm={10} md={8} lg={7} xl={6} key={r.id}>
                 <Card
-                  className="w-100 border-0 p-4"
+                  className="w-100 border-0 p-4 position-relative d-flex flex-column"
                   style={{
                     borderRadius: "24px",
                     boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
                     background: "#fff",
+                    minHeight: "100%"
                   }}
                 >
-                  <Row className="align-items-center">
-                    <Col xs={12} md={8}>
-                      <Card.Body className="text-start p-0">
-                        <Card.Title className="d-flex align-items-center mb-3">
-                          <BsPersonCircle className="me-2 text-danger" size={28} />
-                          <span
-                            className="fw-bold"
-                            style={{ fontSize: "1.3rem" }}
-                          >
-                            {name}
-                          </span>
-                        </Card.Title>
-                        <Card.Text className="mb-2 d-flex align-items-center">
-                          <BsDropletFill
-                            className="me-2 text-danger"
-                            size={20}
-                          />
-                          <strong>Blood Type:&nbsp;</strong> 
-                          {r.blood_type_needed}
-                        </Card.Text>
-                        <Card.Text className="mb-2 d-flex align-items-center">
-                          <BsGeoAltFill className="me-2 text-danger" size={20} />
-                          <strong>Location:&nbsp;</strong> 
-                          {r.place}
-                        </Card.Text>
-                        <Card.Text className="d-flex align-items-center mt-2">
-                          <BsCalendarDate
-                            className="me-2 text-danger"
-                            size={20}
-                          />
-                          <strong>Date:&nbsp;</strong> 
-                          {r.createdAt
-                            ? new Date(r.createdAt).toLocaleDateString()
-                            : "N/A"}
-                        </Card.Text>
-                        <Card.Text className="d-flex align-items-center">
-                          <BsTelephoneFill
-                            className="me-2 text-danger"
-                            size={20}
-                          />
-                          <strong>Phone:&nbsp;</strong> 
-                          {phone !== "N/A" ? (
-                            <a
-                              href={`tel:${phone}`}
-                              className="text-decoration-none text-danger"
-                            >
-                              {phone}
-                            </a>
-                          ) : (
-                            "N/A"
-                          )}
-                        </Card.Text>
-                      </Card.Body>
-                    </Col>
-                    <Col
-                      xs={12}
-                      md={4}
-                      className="text-end align-self-start mt-3 mt-md-0"
-                    >
-                      {getStatusBadge(r.state)}
-                    </Col>
-                  </Row>
+                  <div style={{ position: "absolute", top: "10px", right: "10px", width: "100px" }}>
+                    {getStatusBadge(r.state)}
+                  </div>
+
+                  <Card.Body className="text-start p-0 flex-grow-1">
+                    <Card.Title className="d-flex align-items-center mb-3">
+                      <BsPersonCircle className="me-2 text-danger" size={28}/>
+                      <span className="fw-bold" style={{fontSize:"1.3rem"}}>{name}</span>
+                    </Card.Title>
+
+                    <Card.Text className="d-flex align-items-center mb-2">
+                      <BsDropletFill className="me-2 text-danger" size={20}/>
+                      <strong>Blood Type:&nbsp;</strong>{r.blood_type_needed}
+                    </Card.Text>
+
+                    <Card.Text className="d-flex align-items-center mb-2">
+                      <BsGeoAltFill className="me-2 text-danger" size={20}/>
+                      <strong>Location:&nbsp;</strong>{r.place}
+                    </Card.Text>
+
+                    <Card.Text className="d-flex align-items-center mt-2">
+                      <BsCalendarDate className="me-2 text-danger" size={20}/>
+                      <strong>Date:&nbsp;</strong>{r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "N/A"}
+                    </Card.Text>
+
+                    <Card.Text className="d-flex align-items-center mt-2">
+                      <BsTelephoneFill className="me-2 text-danger" size={20}/>
+                      <strong>Phone:&nbsp;</strong>
+                      {phone !== "N/A" ? (
+                        <a href={`tel:${phone}`} className="text-decoration-none text-danger">{phone}</a>
+                      ) : "N/A"}
+                    </Card.Text>
+
+                    <div className="d-flex flex-column flex-lg-row justify-content-between align-items-start mt-2">
+                      <Card.Text className="d-flex align-items-center mb-2 mb-lg-0">
+                        <BsStarFill className="me-2 text-danger" size={23} />
+                        <strong className="me-2">Rating:</strong>
+                        {rating > 0 ? (
+                          <>
+                            <span className="d-flex align-items-center me-2">{renderStars(rating)}</span>
+                            ({raters})
+                          </>
+                        ) : "No ratings yet"}
+                      </Card.Text>
+
+                      <Button
+                        className="float-end w-sm-100 px-5 mt-3 mt-lg-0"
+                        variant="danger"
+                        size="md"
+                        disabled={hasAccepted || r.state !== "open"}
+                        onClick={() => handleAccept(r)}
+                      >
+                        {hasAccepted ? "Accepted" : "Accept"}
+                      </Button>
+                    </div>
+                  </Card.Body>
                 </Card>
               </Col>
             );
@@ -161,12 +214,7 @@ export default function ReceivedRequestsPage() {
         </Row>
       ) : (
         <p className="text-center">
-          <img
-            src={noResultGif}
-            alt="No results"
-            className="d-block mx-auto mb-3"
-            style={{ width: "80px" }}
-          />
+          <img src={noResultGif} alt="No results" className="d-block mx-auto mb-3" style={{width:"80px"}}/>
           No requests found.
         </p>
       )}
