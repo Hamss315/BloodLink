@@ -8,7 +8,6 @@ function Contact() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
- 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
@@ -27,13 +26,12 @@ function Contact() {
     e.preventDefault();
     console.log("Sending form data:", formData);
 
-   
     emailjs
       .send(
-         "service_2z00o85",       
-    "template_7uaw6lw",      
-    formData,                
-    "HL7fOaCcJmdjWb8gN" 
+        "service_2z00o85",       
+        "template_7uaw6lw",      
+        formData,                
+        "HL7fOaCcJmdjWb8gN" 
       )
       .then(
         (result) => {
@@ -67,14 +65,14 @@ function Contact() {
       style={{ background: "linear-gradient(to bottom, #fff0f2, #ffe6eb)" }}
       id="contact"
     >
-      <Container>
+      <Container className="px-3 px-md-4">
         <div
           style={{
             textAlign: "center",
             marginBottom: "2rem",
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(30px)",
-            transition: "all 1.2s ease",
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "all 0.8s ease",
           }}
         >
           <h2 className="mb-2">Get In Touch</h2>
@@ -82,15 +80,13 @@ function Contact() {
         </div>
 
         <Row className="g-4">
-        
           <Col xs={12} md={6}>
-            <Card  className={`p-4 rounded-4 shadow-sm`}
+            <Card className={`p-4 rounded-4 shadow-sm`}
               style={{
-            
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(-50px)",
-                transition: "all 1.2s ease",
-                transitionDelay: "0.2s",
+                transform: isVisible ? "scale(1)" : "scale(0.95)",
+                transition: "all 0.8s ease",
+                transitionDelay: "0.1s",
               }}
             >
               <Card.Body>
@@ -105,13 +101,12 @@ function Contact() {
                       onChange={handleChange}
                       placeholder="Your name"
                       required
-                      
                       style={{ borderRadius: "1rem", background: "linear-gradient(to bottom, #fff0f2, #ffe6eb)" }}
                     />
                   </Form.Group>
 
                   <Form.Group className="mb-3 rounded-4">
-                    <Form.Label >Email</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control
                       type="email"
                       name="email"
@@ -119,7 +114,7 @@ function Contact() {
                       onChange={handleChange}
                       placeholder="your@email.com"
                       required
-                      style={{ borderRadius: "1rem" ,background: "linear-gradient(to bottom, #fff0f2, #ffe6eb)"}}
+                      style={{ borderRadius: "1rem", background: "linear-gradient(to bottom, #fff0f2, #ffe6eb)" }}
                     />
                   </Form.Group>
 
@@ -133,7 +128,7 @@ function Contact() {
                       rows={5}
                       placeholder="Your message here..."
                       required
-                      style={{ borderRadius: "1rem", resize: "none" ,background: "linear-gradient(to bottom, #fff0f2, #ffe6eb)"}}
+                      style={{ borderRadius: "1rem", resize: "none", background: "linear-gradient(to bottom, #fff0f2, #ffe6eb)" }}
                     />
                   </Form.Group>
 
@@ -147,13 +142,12 @@ function Contact() {
 
           <Col xs={12} md={6} className="d-flex flex-column gap-3">
             {contactItems.map((item, i) => (
-              <Card  className="p-3 rounded shadow-sm"
+              <Card className="p-3 rounded shadow-sm"
                 key={i}
                 style={{
-                 
                   opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateX(0)" : "translateX(50px)",
-                  transition: `all 1.2s ease ${0.2 + i * 0.2}s`,
+                  transform: isVisible ? "scale(1)" : "scale(0.95)",
+                  transition: `all 0.8s ease ${0.2 + i * 0.1}s`,
                 }}
               >
                 <div className="d-flex align-items-center gap-3">
@@ -168,13 +162,11 @@ function Contact() {
               </Card>
             ))}
 
-          
-            <Card  className="p-3 rounded shadow-sm"
+            <Card className="p-3 rounded shadow-sm"
               style={{
-                
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(50px)",
-                transition: `all 1.2s ease 0.8s`,
+                transform: isVisible ? "scale(1)" : "scale(0.95)",
+                transition: `all 0.8s ease 0.5s`,
                 textAlign: "center",
               }}
             >
@@ -204,3 +196,7 @@ function Contact() {
 }
 
 export default Contact;
+
+
+
+

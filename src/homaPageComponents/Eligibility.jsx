@@ -32,20 +32,20 @@ function DonationEligibility() {
 
   return (
     <section
-     id="eligibility"
+      id="eligibility"
       ref={sectionRef}
       className="py-5"
       style={{
         background: "linear-gradient(to bottom, white, #ffe4ec, white)",
       }}
     >
-      <Container>
+      <Container className="px-3 px-md-4">
         <div
           className="text-center mb-5"
           style={{
-            transition: "0.9s",
+            transition: "0.8s",
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(40px)",
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
           }}
         >
           <h2 className="display-4 fw-bold">Who Can Donate?</h2>
@@ -55,7 +55,6 @@ function DonationEligibility() {
         </div>
 
         <Row className="align-items-center">
-
           <Col xs={12} md={6} className="mb-4 mb-md-0"> 
             <Card
               className="rounded-4 p-4 border-0 shadow-sm"
@@ -63,7 +62,7 @@ function DonationEligibility() {
                 border: "1px solid #ffa7c6",
                 transition: "0.8s",
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(-50px)",
+                transform: isVisible ? "scale(1)" : "scale(0.95)",
               }}
             >
               <h4 className="d-flex align-items-center fw-bold mb-0">
@@ -85,7 +84,7 @@ function DonationEligibility() {
                     className="d-flex align-items-center mb-4"
                     style={{
                       opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? "translateX(0)" : "translateX(-20px)",
+                      transform: isVisible ? "scale(1)" : "scale(0.95)",
                       transition: `${0.6 + i * 0.1}s`,
                     }}
                   >
@@ -121,11 +120,11 @@ function DonationEligibility() {
                         transition: "0.3s",
                         cursor: "pointer",
                         opacity: isVisible ? 1 : 0,
-                        transform: isVisible ? "scale(1)" : "scale(.9)",
+                        transform: isVisible ? "scale(1)" : "scale(0.9)",
                         transitionDelay: `${0.5 + i * 0.1}s`,
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "scale(1.07)";
+                        e.currentTarget.style.transform = "scale(1.05)";
                         e.currentTarget.style.boxShadow = "0 12px 25px rgba(0,0,0,0.15)";
                       }}
                       onMouseLeave={(e) => {
@@ -152,9 +151,6 @@ function DonationEligibility() {
             </Row>
           </Col>
         </Row>
-        
-      
-        
       </Container>
     </section>
   );

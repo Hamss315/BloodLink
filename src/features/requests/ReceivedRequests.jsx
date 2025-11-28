@@ -108,8 +108,7 @@ export default function ReceivedRequestsPage() {
 
   const getStatusBadge = (state) => {
     return (
-      <div className={`d-flex align-items-center justify-content-center p-2 rounded-4 fw-bold`} style={{
-        width: "100px",
+      <div className={`d-flex align-items-center justify-content-center p-2 px-5 mb-2 rounded-4 fw-bold`} style={{
         backgroundColor: state === "open" ? "#dbfce7" : state === "pending" ? "#fff3cd" : "#ffe2e2",
         color: state === "open" ? "#1d6630" : state === "pending" ? "#856404" : "#9f1526",
         fontSize: "0.85rem"
@@ -158,16 +157,22 @@ export default function ReceivedRequestsPage() {
                     margin: "0 auto"
                   }}
                 >
-                  <div style={{ position: "absolute", top: "10px", right: "10px", width: "100px" }}>
-                    {getStatusBadge(r.state)}
-                  </div>
 
                   <Card.Body className="text-start p-0 flex-grow-1">
-                    <Card.Title className="d-flex align-items-center mb-3 request-title">
-                      <BsPersonCircle className="me-2 text-danger" size={28}/>
-                      <span className="fw-bold name-text">{name}</span>
-                    </Card.Title>
+                    <Card.Title className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+                      <div className="d-md-none w-100 mb-2">
+                        {getStatusBadge(r.state)}
+                      </div>
 
+                      <div className="d-flex align-items-center">
+                        <BsPersonCircle className="me-2 text-danger" size={28} />
+                        <span className="fw-bold">{name}</span>
+                      </div>
+
+                      <div className="d-none d-md-block ms-3">
+                        {getStatusBadge(r.state)}
+                      </div>
+                    </Card.Title>
                     <Card.Text className="d-flex align-items-center mb-2">
                       <BsDropletFill className="me-2 text-danger" size={20}/>
                       <strong>Blood Type:&nbsp;</strong>{r.blood_type_needed}

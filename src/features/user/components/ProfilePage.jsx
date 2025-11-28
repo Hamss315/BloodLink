@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import styles from "./ProfilePage.module.css";
 import formGif from "../../../assets/images/form.gif";
 import noResultGif from "../../../assets/images/no-data (1).gif";
+import userGif from "../../../assets/images/user.gif";
 
 function Profile() {
   const { user } = useAppSelector((state) => state.user);
@@ -128,7 +129,7 @@ function Profile() {
           <Col xs={12} md={3} className={styles.sidebar}>
             <div className={styles.profileBox}>
               <img
-                src="src/assets/images/user.gif"
+                src={userGif}
                 className={styles.avatar}
                 alt="User"
               />

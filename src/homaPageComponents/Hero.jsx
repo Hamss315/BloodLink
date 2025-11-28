@@ -20,23 +20,23 @@ function Hero() {
   return (
     <section
       id="home"
-      className={`${styles.heroSection} d-flex align-items-center justify-content-center position-relative px-3 px-md-5 px-lg-6`}
+      className={`${styles.heroSection} d-flex align-items-center justify-content-center position-relative`}
       style={{ minHeight: "100vh", margin: 0 }}
     >
       <div className={styles.heroBg}></div>
 
-      <Container fluid className="h-100 pt-4 mt-5">
-        <Row className="align-items-center justify-content-center h-100 gx-3 gx-md-4">
+      <Container className="h-100 pt-2 mt-5 px-3 px-md-4">
+        <Row className="align-items-center justify-content-center h-100 g-4">
           <Col
             lg={6}
-            className="text-center text-lg-start mb-5 mb-lg-0 px-4 px-lg-5"
+            className="text-center text-lg-start mb-4 mb-lg-0"
           >
-            <h1 className="fw-bold text-dark mb-3 display-2 display-md-1 display-lg-1">
+            <h1 className="fw-bold text-dark mb-3 display-4 display-md-3 display-lg-2">
               Donate Blood, <br />
               <span className="text-danger">Save Lives</span>
             </h1>
 
-            <p className="text-dark mb-4 fs-6 fs-sm-5 fs-md-4 fs-lg-3">
+            <p className="text-dark mb-4 fs-6 fs-md-5">
               Join our community of lifesavers. Every donation makes a
               difference in someone's life. Be the hero someone needs today.
             </p>
@@ -63,7 +63,7 @@ function Hero() {
           </Col>
 
           <Col lg={6} className="text-center">
-            <div className={`${styles.illustrationWrapper} mx-auto`}>
+            <div className={`${styles.illustrationWrapper}`}>
               <svg
                 className={styles.heartIcon}
                 viewBox="0 0 100 100"

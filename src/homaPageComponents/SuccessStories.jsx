@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { Container, Row, Col, Card } from "react-bootstrap"
+import image1 from "../assets/images/woman-donor-smiling.jpg"
+import image2 from "../assets/images/man-grateful-recipient.jpg"
+import image3 from "../assets/images/woman-healthy-donor.jpg"
 
 function SuccessStories() {
   const [isVisible, setIsVisible] = useState(false)
@@ -24,7 +27,7 @@ function SuccessStories() {
       role: "Donor",
       story:
         "Donating blood has become part of my routine. Knowing that my donation can save lives makes me feel connected to my community.",
-      image: "/src/assets/images/woman-donor-smiling.jpg",
+      image: image1,
     },
     {
       id: 2,
@@ -32,7 +35,7 @@ function SuccessStories() {
       role: "Recipient",
       story:
         "After my surgery, I received blood from generous donors. I'm forever grateful for their selfless act that gave me a second chance.",
-      image: "/src/assets/images/man-grateful-recipient.jpg",
+      image: image2,
     },
     {
       id: 3,
@@ -40,7 +43,7 @@ function SuccessStories() {
       role: "Donor",
       story:
         "I started donating to help others, but I discovered it also improved my own health. It's a win-win for everyone involved.",
-      image: "/src/assets/images/woman-healthy-donor.jpg",
+      image: image3,
     },
   ]
 
@@ -51,8 +54,7 @@ function SuccessStories() {
       className="py-5"
       style={{ background: "linear-gradient(to bottom, #fff6f6ff, #fff)" }}
     >
-      <Container>
-        
+      <Container className="px-3 px-md-4">
         <div
           className="text-center mb-5"
           style={{
@@ -70,11 +72,10 @@ function SuccessStories() {
         <Row className="g-4">
           {stories.map((story, index) => (
             <Col md={4} key={story.id}>
-              
-               <Card className="h-100 mb-3 mb-md-0 rounded-3 overflow-hidden shadow"
+              <Card className="h-100 mb-3 mb-md-0 rounded-3 shadow"
                 style={{
                   opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                  transform: isVisible ? "scale(1)" : "scale(0.95)",
                   transition: `0.7s ease ${index * 0.15}s`,
                 }}
               >
@@ -102,6 +103,5 @@ function SuccessStories() {
     </section>
   )
 }
-
 
 export default SuccessStories;

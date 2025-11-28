@@ -14,6 +14,7 @@ import {
   InputGroup
 } from 'react-bootstrap'
 import { FaPhone } from 'react-icons/fa'
+import DonorGif from "../../../assets/images/world-blood-donor-day.gif"
 
 function LoginForm() {
   const dispatch = useAppDispatch()
@@ -100,7 +101,7 @@ function LoginForm() {
               >
                 <div className="text-center px-3 py-4">
                   <img
-                    src="/src/assets/images/world-blood-donor-day.gif"
+                    src={DonorGif}
                     alt="Welcome"
                     className="mb-3"
                     style={{ width: '80px' }}
